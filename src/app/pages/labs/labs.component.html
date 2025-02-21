@@ -3,9 +3,11 @@
   <h2>{{ welcome }}</h2> <!-- String interpolation:Es la manera de enviar datos desde nuestro componente hacia la vista -->
 
   <ul>
-    <li *ngFor="let task of tasks()">
+    @for (task of tasks(); track task) {
+<li>
       {{ task }}
     </li>
+}
   </ul>
 
   <hr />
@@ -45,9 +47,11 @@
   <hr />
   <ul>
     <p>total: {{ tasks().length }}</p>
-    <li *ngFor="let task of tasks(); index as i">
+    @for (task of tasks(); track task; let i = $index) {
+<li>
       {{ i }} {{ task }}
     </li>
+}
   </ul>
 
   <!-- nueva sintaxis -->
@@ -55,12 +59,16 @@
 
   <hr />
   <h1>ngIf</h1>
-  <div *ngIf="1 !== 1">
+  @if (1 !== 1) {
+<div>
     My content
   </div>
-  <div *ngIf="name() === 'Evelyn'">
+}
+  @if (name() === 'Evelyn') {
+<div>
     Soy evelyn
   </div>
+}
 
   <!-- nueva sintaxis -->
 
@@ -70,12 +78,16 @@
   <!---->
 
   <input type = number [value]="person().age" (change)="changeAge($event)"/>
-  <div *ngIf="person().name === 'Evelyn' && person().age > 18; else elseBlock">
+  @if (person().name === 'Evelyn' && person().age > 18) {
+<div>
     Soy evelyn y soy mayor de edad 
   </div>
-  <ng-template #elseBlock>
+} @else {
+
     Soy evelyn y soy menor de edad
-  </ng-template>
+  
+}
+  
 
   <!-- nueva sintaxis -->
   <h1>If else new</h1>
@@ -89,12 +101,22 @@
   <hr />
   <h1>ngSwitch</h1>
   <input type="text" [value]="person().name" (change)="changeName($event)"/>
-  <div [ngSwitch]="person().name">
-    <p *ngSwitchCase="'Evelyn'">Soy Evelyn</p>
-    <p *ngSwitchCase="'Juan'">Soy Juan</p>
-    <p *ngSwitchCase="'Pedro'">Soy Pedro</p>
-    <p *ngSwitchDefault>No soy nadie</p>
-  </div>
+  <div>
+@switch (person().name) {
+    @case ('Evelyn') {
+<p>Soy Evelyn</p>
+}
+    @case ('Juan') {
+<p>Soy Juan</p>
+}
+    @case ('Pedro') {
+<p>Soy Pedro</p>
+}
+    @default {
+<p>No soy nadie</p>
+}
+  }
+</div>
 
   <hr />
   <h1>Inputs</h1>
@@ -130,9 +152,11 @@
   <h1>New for</h1>
   <ul>
     <p>total: {{ tasks().length }}</p>
-    <li *ngFor="let task of tasks(); index as i">
+    @for (task of tasks(); track task; let i = $index) {
+<li>
       {{ i }} {{ task }}
     </li>
+}
   </ul>
 
   <ul>
@@ -148,12 +172,22 @@
 <hr />
   <h1>New Switch</h1>
   <input type="text" [value]="person().name" (change)="changeName($event)"/>
-  <div [ngSwitch]="person().name">
-    <p *ngSwitchCase="'Evelyn'">Soy Evelyn</p>
-    <p *ngSwitchCase="'Juan'">Soy Juan</p>
-    <p *ngSwitchCase="'Pedro'">Soy Pedro</p>
-    <p *ngSwitchDefault>No soy nadie</p>
-  </div>
+  <div>
+@switch (person().name) {
+    @case ('Evelyn') {
+<p>Soy Evelyn</p>
+}
+    @case ('Juan') {
+<p>Soy Juan</p>
+}
+    @case ('Pedro') {
+<p>Soy Pedro</p>
+}
+    @default {
+<p>No soy nadie</p>
+}
+  }
+</div>
   
   <div>
     @switch (person().name) {
