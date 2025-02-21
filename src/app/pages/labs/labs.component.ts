@@ -22,7 +22,7 @@ export class LabsComponent {
 
   name = signal('Evelyn');
   //private age = 23;
-  age = 23;
+  age = 32;
   disabled = true;
   img = 'https://www.w3schools.com/howto/img_avatar.png';
 
